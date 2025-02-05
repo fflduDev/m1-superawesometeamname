@@ -6,8 +6,18 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Boolean isItemInList(String thisItem) {
-		// TODO Auto-generated method stub
-		return null;
+		if (head == null) {
+			return false;
+		}
+		ListItem cur = head;
+		while (cur.next != null) {
+			if (cur.data == thisItem) {
+				return true;
+			}else {
+				cur = cur.next;
+			}
+		}
+		return false;
 	}
 
 	@Override

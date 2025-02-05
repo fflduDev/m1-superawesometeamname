@@ -6,7 +6,10 @@ public class LinkedListTester {
 		// create implementation, then...
 		
 		LinkedList tester = new LinkedListImpl();
+		tester.addItem("less than others");
+		tester.addItem("blah blah blah");
 		tester.addItem("an item to add");
+		tester.listItems();
 		
 
 	}

@@ -32,10 +32,6 @@ public class LinkedListImpl implements LinkedList {
 		}
 		cur.next = new ListItem(thisItem);
 		return true;
-		
-		// System.out.println("hello from addItem in LinkedListImpl - the item passed in: " + thisItem);
-	
-		// return null;
 	}
 
 	@Override
@@ -46,7 +42,14 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public void listItems() {
-		// TODO Auto-generated method stub
+		if (head == null) {
+			return;
+		}
+		ListItem cur = head;
+		while (cur != null) {
+			System.out.println(cur.data);
+			cur = cur.next;
+		}
 		
 	}
 
@@ -70,7 +73,13 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public void sort() {
-		
+		if (head == null) return;
+		ListItem cur = head;
+		while (cur.next != null) {
+			if (head.data.compareTo(cur.data) > 0) head = cur;
+		}
+
+
 	}
 	
 }

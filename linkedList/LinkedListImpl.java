@@ -12,11 +12,20 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Boolean addItem(String thisItem) {
+		if (head == null) {
+			head = new ListItem(thisItem);
+			return true;
+		}
+		ListItem cur = head;
+		while (cur.next != null) {
+			cur = cur.next;
+		}
+		cur.next = new ListItem(thisItem);
+		return true;
 		
-		
-		System.out.println("hello from addItem in LinkedListImpl - the item passed in: " + thisItem);
+		// System.out.println("hello from addItem in LinkedListImpl - the item passed in: " + thisItem);
 	
-		return null;
+		// return null;
 	}
 
 	@Override
@@ -55,3 +64,5 @@ public class LinkedListImpl implements LinkedList {
 	}
 	
 }
+
+// a, b, c, d

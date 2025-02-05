@@ -2,6 +2,8 @@ package linkedList;
 
 public class LinkedListImpl implements LinkedList {
 
+	private ListItem head;
+
 	@Override
 	public Boolean isItemInList(String thisItem) {
 		// TODO Auto-generated method stub
@@ -49,7 +51,6 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public void sort() {
-		// TODO Auto-generated method stub
 		
 	}
 	

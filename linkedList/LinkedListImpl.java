@@ -83,8 +83,23 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Boolean insertAfter(String newItem, String itemToInsertAfter) {
-		// TODO Auto-generated method stub
-		return null;
+		ListItem cur = head;
+		ListItem add = new ListItem(newItem);
+		
+		if (head == null) { //if list is empty
+			head = add;
+			return true;
+		}
+		
+		while (cur.next != null) {
+			if (cur.data.equals(itemToInsertAfter)) {
+				add.next = cur.next;
+				cur.next = add;
+				return true;
+			}
+			cur = cur.next;
+		}
+		return false;
 	}
 
 	@Override

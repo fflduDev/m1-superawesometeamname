@@ -10,6 +10,8 @@ public class LinkedListTester {
 		tester.addItem("blah blah blah");
 		tester.addItem("an item to add");
 		tester.listItems();
+		tester.insertAfter("cheese", "blah blah blah");
+		tester.listItems();
 		
 
 	}

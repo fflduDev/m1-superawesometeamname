@@ -6,18 +6,18 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Boolean isItemInList(String thisItem) {
-		if (head == null) {
+		if (head == null) { //if list empty -> false
 			return false;
 		}
 		ListItem cur = head;
-		while (cur.next != null) {
+		while (cur.next != null) { //iterates through list until it finds item
 			if (cur.data == thisItem) {
 				return true;
 			}else {
 				cur = cur.next;
 			}
 		}
-		return false;
+		return false; //if loop does not find the item
 	}
 
 	@Override
@@ -55,8 +55,24 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Boolean deleteItem(String thisItem) {
-		// TODO Auto-generated method stub
-		return null;
+		if (head == null) { //if head is empty
+			return false;
+		}
+		
+		if (head.data.equals(thisItem)) { //if head is the item to remove
+			head = head.next;
+			return true;
+		}
+		
+		ListItem cur = head;
+		while (cur != null) { //checks all items from head to end
+			if (cur.next.data.equals(thisItem)) {
+				cur.next = cur.next.next;
+				return true;
+			}
+			cur = cur.next;
+		}
+		return false;
 	}
 
 	@Override

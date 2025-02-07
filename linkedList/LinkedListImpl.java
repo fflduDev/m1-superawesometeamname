@@ -104,15 +104,43 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public void sort() {
-		if (head == null) return;
-		ListItem cur = head;
-		while (cur.next != null) {
-			if (head.data.compareTo(cur.data) > 0) head = cur;
+
+		// possibly the worst sorting algorithm known to man
+
+		if (head == null || head.next == null) return;	// empty/1-item lists are already sorted
+
+		ListItem smallestPrev;	// node whose next has smallest data
+		ListItem prev;			// node before innerCur node
+		ListItem innerCur;		// current node used for comparison
+		ListItem outerCur;		// position to move smallest node to
+
+		// makes a dummy head so the whole list can be sorted the same way, then removes head at the end
+		head = new ListItem(null) {{
+			this.next = head;
+		}};
+
+		outerCur = head;
+	
+		while (outerCur.next != null) {
+			prev = outerCur;
+			smallestPrev = prev;
+			innerCur = outerCur.next;
+			while (innerCur != null) {
+				if (innerCur.data.compareToIgnoreCase(smallestPrev.next.data) <= 0) {
+					smallestPrev = prev;
+				}
+				prev = innerCur;
+				innerCur = innerCur.next;
+			}
+			innerCur = smallestPrev.next;
+			smallestPrev.next = smallestPrev.next.next;
+			innerCur.next = outerCur.next;
+			outerCur.next = innerCur;
+			outerCur = innerCur;
 		}
 
+		head = head.next;	// bye bye
 
 	}
 	
 }
-
-// a, b, c, d

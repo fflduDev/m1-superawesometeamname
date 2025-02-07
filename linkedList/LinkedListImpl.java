@@ -10,10 +10,10 @@ public class LinkedListImpl implements LinkedList {
 			return false;
 		}
 		ListItem cur = head;
-		while (cur.next != null) { //iterates through list until it finds item
+		while (cur != null) { //iterates through list until it finds item
 			if (cur.data == thisItem) {
 				return true;
-			}else {
+			} else {
 				cur = cur.next;
 			}
 		}
@@ -36,8 +36,12 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Integer itemCount() {
-		// TODO Auto-generated method stub
-		return null;
+		int i = 0; ListItem cur = head;
+		while (cur != null) {
+			i += 1;
+			cur = cur.next;
+		}
+		return i;
 	}
 
 	@Override
@@ -65,7 +69,7 @@ public class LinkedListImpl implements LinkedList {
 		}
 		
 		ListItem cur = head;
-		while (cur != null) { //checks all items from head to end
+		while (cur.next != null) { //checks all items from head to end
 			if (cur.next.data.equals(thisItem)) {
 				cur.next = cur.next.next;
 				return true;
@@ -77,8 +81,29 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Boolean insertBefore(String newItem, String itemToInsertBefore) {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (head == null) return false;			// can't insert before smth that doesn't exist
+
+		if (head.data.equals(itemToInsertBefore)) {		// head case (haha)
+			head.next = new ListItem(newItem) {{
+				this.next = head.next;
+			}};
+			return true;
+		}
+
+		ListItem cur = head.next; ListItem prev = head;	// track prev node in order to place new node in correct spot
+		while (cur != null) {
+			if (cur.data.equals(itemToInsertBefore)) {
+				prev.next = new ListItem(newItem);
+				prev.next.next = cur;
+				return true;
+			}
+			prev = cur;
+			cur = cur.next;
+		}
+
+		return false;
+
 	}
 
 	@Override
@@ -132,7 +157,7 @@ public class LinkedListImpl implements LinkedList {
 				prev = innerCur;
 				innerCur = innerCur.next;
 			}
-			innerCur = smallestPrev.next;
+			innerCur = smallestPrev.next;	// really smallest shouldn't be assigned to current but I needed a temp node soooo
 			smallestPrev.next = smallestPrev.next.next;
 			innerCur.next = outerCur.next;
 			outerCur.next = innerCur;

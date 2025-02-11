@@ -131,12 +131,12 @@ public class LinkedListImpl implements LinkedList {
 	public void sort() {
 
 		// possibly the worst sorting algorithm known to man
+		// O(n2), iterates node by node thru list, getting smallest nodes to front of list
 
 		if (head == null || head.next == null) return;	// empty/1-item lists are already sorted
 
 		ListItem smallestPrev;	// node whose next has smallest data
-		ListItem prev;			// node before innerCur node
-		ListItem innerCur;		// current node used for comparison
+		ListItem prev;			// node before node used for comparison
 		ListItem outerCur;		// position to move smallest node to
 
 		// makes a dummy head so the whole list can be sorted the same way, then removes head at the end
@@ -149,19 +149,17 @@ public class LinkedListImpl implements LinkedList {
 		while (outerCur.next != null) {
 			prev = outerCur;
 			smallestPrev = prev;
-			innerCur = outerCur.next;
-			while (innerCur != null) {
-				if (innerCur.data.compareToIgnoreCase(smallestPrev.next.data) <= 0) {
+			while (prev.next != null) {
+				if (prev.next.data.compareToIgnoreCase(smallestPrev.next.data) <= 0) {
 					smallestPrev = prev;
 				}
-				prev = innerCur;
-				innerCur = innerCur.next;
+				prev = prev.next;
 			}
-			innerCur = smallestPrev.next;	// really smallest shouldn't be assigned to current but I needed a temp node soooo
+			prev = smallestPrev.next;	// really smallest shouldn't be assigned to current but I needed a temp node soooo
 			smallestPrev.next = smallestPrev.next.next;
-			innerCur.next = outerCur.next;
-			outerCur.next = innerCur;
-			outerCur = innerCur;
+			prev.next = outerCur.next;
+			outerCur.next = prev;
+			outerCur = prev;
 		}
 
 		head = head.next;	// bye bye

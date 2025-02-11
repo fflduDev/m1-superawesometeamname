@@ -65,10 +65,10 @@ public class LinkedListTester {
 
 		// Five items
 		LinkedList t5 = new LinkedListImpl();
+		t5.addItem("bbbbb");
 		t5.addItem("eeeee");
 		t5.addItem("ddddd");
 		t5.addItem("ccccc");
-		t5.addItem("bbbbb");
 		t5.addItem("aaaaa");
 		t5.listItems();
 		System.out.println("-------------");

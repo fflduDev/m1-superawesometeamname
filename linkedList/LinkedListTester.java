@@ -16,7 +16,7 @@ public class LinkedListTester {
 		tester.addItem("a");
 		tester.listItems();
 
-		tester.insertAfter("cheese", "blah blah blah");
+		tester.insertBefore("cheese", "blah blah blah");
 		tester.listItems();
 		
 

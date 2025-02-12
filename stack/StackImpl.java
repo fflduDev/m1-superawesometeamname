@@ -7,7 +7,7 @@ public class StackImpl implements Stack {
 	
 	@Override
 	public void push(String s) {
-		if (stack == null) {
+		if (stack == null) { //checks if the stack array has been initialized
 			System.out.println("Please set the size of the stack (setCapacity) before pushing");
 			return;
 		}
@@ -25,7 +25,7 @@ public class StackImpl implements Stack {
 
 	@Override
 	public String pop() {
-		if (stack == null) {
+		if (stack == null) { //checks if the stack array has been initialized
 			System.out.println("Please set the size of the stack (setCapacity) before poping");
 			return null;
 		}
@@ -36,6 +36,7 @@ public class StackImpl implements Stack {
 		
 	}
 
+	// isEmpty returns true if no item in top of stack, or if stack isn't initialized
 	@Override
 	public Boolean isEmpty() {
 		if (stack == null || last == -1) {
@@ -45,6 +46,7 @@ public class StackImpl implements Stack {
 		}
 	}
 
+	//isFull returns true if top item is at the highest index possible, false otherwise
 	@Override
 	public Boolean isFull() {
 		if (stack != null && last + 1 == stack.length) {
@@ -60,7 +62,7 @@ public class StackImpl implements Stack {
 
 	@Override
 	public String peek() {
-		if (stack == null) {
+		if (stack == null) { //checks if the stack array has been initialized
 			System.out.println("Please set the size of the stack (setCapacity) before peeking");
 			return null;
 		}
@@ -76,7 +78,7 @@ public class StackImpl implements Stack {
 
 	@Override
 	public void display() {
-		if (stack == null) {
+		if (stack == null) { //checks if the stack array has been initialized
 			System.out.println("Please set the size of the stack (setCapacity) before displaying");
 			return;
 		}

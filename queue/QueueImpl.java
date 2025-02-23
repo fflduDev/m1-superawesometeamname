@@ -3,57 +3,78 @@ package queue;
 public class QueueImpl implements Queue {
 
 	private String[] queue;
-	int last = -1; //tracks index of most recent insertion
+	int front = 0; //tracks index of oldest insertion
+	int rear = -1; //index of value after final value
+	
+	//added this constructor to initialize queue size
+	public QueueImpl(int i) {
+		queue = new String[i];
+	}
 	
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
+		if (front == 0 && rear == queue.length - 1) {
+			return true;
+		} else if (front != 0 && rear == front - 1) {
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if (queue[front] == null) {
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public void enQueue(String element) { //add new elements to end of queue
-		
-		if (queue != null && last != queue.length) {
-			queue[last + 1] = element;
-			last ++;
-		} else if (queue == null){
-			System.out.println("Set capacity of queue before adding elements");
-			return;
+		if (rear + 1 == queue.length) {
+			rear = 0;
 		} else {
-			System.out.println("Queue full, cannot add [" + element + "]");
-			return;
+			rear ++;
 		}
+		queue[rear] = element;
 		
 	}
 
 	@Override
 	public String deQueue() { //remove index 0, move all other values left
 		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty() == true) {
+			return null;
+		}
+		
+		String output = queue[front];
+		queue[front] = null;
+		if (front + 1 >= queue.length) {
+			front = 0;
+		} else {
+			front ++;
+		}
+		
+		return output;
 	}
 
 	@Override
 	public void display() {
-		// TODO Auto-generated method stub
+		for (String s : queue) {
+			System.out.println(s);
+		}
+		System.out.println("Front: " + queue[front]);
+		System.out.println("Rear: " + queue[rear]);
 		
 	}
 
 	@Override
 	public String peek() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	//added this method to initialize queue size
-	public void setCapacity(int i) {
-		queue = new String[i];
+		if (isEmpty() == true) {
+			return null;
+		}
+		
+		return queue[front];
 	}
 
 }

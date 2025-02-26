@@ -3,6 +3,33 @@ package queue;
 public class QueueTester {
 
 	Queue q;
+
+	// Test method for debugging
+	public static void main(String[] args) {
+
+		Queue queue = new QueueImpl(5);
+
+		System.out.println(queue.isFull());
+		System.out.println(queue.isEmpty());
+	
+		queue.enQueue("Carl");
+		queue.enQueue("Joe");
+		queue.enQueue("Steve");
+		queue.enQueue("Mario");
+		queue.enQueue("Luigi");
+		queue.display();
+
+		System.out.println(queue.isFull());
+
+		System.out.println(queue.deQueue());	
+		System.out.println(queue.deQueue());
+		System.out.println(queue.deQueue());
+
+		queue.enQueue("Cheese");
+	
+		queue.display();
+
+	}
 	
 	public static void runTests(Queue q) {
 		System.out.println(q.isFull());

@@ -19,7 +19,7 @@ public class StackImpl implements Stack {
 		
 		stack[last + 1] = s;
 		last ++;
-		System.out.println("thing i added to stack: " + s);
+		System.out.println("Added to stack: " + s);
 	
 	}
 
@@ -84,7 +84,7 @@ public class StackImpl implements Stack {
 		}
 		
 		System.out.println("Displaying current stack values: ");
-		for (int i = 0; i <= last; i++) {
+		for (int i = last; i >= 0; i--) {
 			System.out.println(stack[i]);
 		}
 	}
